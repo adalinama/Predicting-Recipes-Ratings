@@ -94,7 +94,7 @@ The model's performance is evaluated using two metrics: root mean squared error 
 
 The RMSE measures the average distance between the predicted ratings and the actual ratings. For the training set, the RMSE is 0.3389, and for the test set, it is 0.3145. A lower RMSE indicates better performance and the values we obtained suggest a reasonable level of accuracy in predicting the average ratings of recipes.
 
-The R-squared score measures the proportion of the variance in the target variable that is predictable from the features. A higher R-squared score indicates a better fit of the model to the data. However, a R-squared can be negative when the model performs worse than a horizontal line. For the training set, the R-squared score is 0.0024, and for the test set, it is -0.0026. Because of this, one of our goals for the Final Model is to improve this score. 
+The R-squared score measures the proportion of the variance in the target variable that is predictable from the features. A higher R-squared score indicates a better fit of the model to the data. However, a R-squared can be negative when the model performs worse than a horizontal line. For the training set, the R-squared score is 0.0024, and for the test set, it is -0.0026. Because of this, one of our goals for the Final Model is to improve the R-squared score and RMSE. 
 
 
 ## Final Model
