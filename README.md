@@ -63,7 +63,7 @@ The fifth step of our data cleaning process was to filter out recipes that took 
     <iframe src="assets/uni-fig-all.html" width='100%' height= 435 align='center' frameBorder=0></iframe>
 </p>
 
-For the last step to clean the dataset, we grouped the data based on recipes and put all reviews of each recipe into lists separated by ‘user_id’ and ’ratings’.
+For the last step to clean the dataset, we grouped the data based on recipes and put all reviews of each recipe into lists separated by `user_id` and `ratings`.
 
 The final step specifically for answering our question was choosing to 
 The first five rows of our dataframe are included below:
