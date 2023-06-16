@@ -147,11 +147,17 @@ We decided to use the features `minutes`, `n_ingredients`, `tags`, `calories`, `
 The features are standardized using StandardScaler for  `minutes`, `n_ingredients`,  `calories`, `avg_rating`, `recipe_age`, `n_steps`,  and `ingredient_time_ratio`. 
 How each feature improved the model:
 `minutes`: This column can provide insights into how the cooking time affects the rating category. Recipes that require longer preparation time might have different characteristics and appeal, leading to variations in the rating category.
+
 `n_ingredients`: This feature represents the number of ingredients used in the recipe. Recipes with a higher number of ingredients might offer more complex flavor and have a different impact on the rating category.
+
 `calories`: This feature represents the number of calories in the recipe. People's preferences for dishes with different calorie levels can affect the rating category.
+
 `avg_rating`: This feature allows the model to consider the past ratings as a predictor for the rating category. Recipes with higher average ratings might be more popular and receive better ratings overall. 
+
 `recipe_age`: This feature represents the age of the recipe since it was submitted. It captures the notion of recipe popularity and its relevance over time. Recipes that have been around for a longer time may have gained more reviews and feedback, which can influence the rating category.
+
 `n_steps`: This feature represents the number of steps or instructions in the recipe which can provide insights into the complexity and level of detail in the cooking process. Recipes with more steps might require additional effort, potentially affecting the rating category.
+
 `ingredient_time_ratio`: This feature represents the ratio of cooking time to the number of ingredients. Recipes with lower ratios may be perceived as easier or quicker to prepare and could impact the rating category.
 
 OneHotEncoder is used for  `tags`. The hyperparameters are from the RandomForestRegressor: `max_depth`, `min_samples_split`, and `n_estimators`. The resulting training set RMSE of 0.00087655 suggests that the model's predictions on the training set are very close to the actual values. The R-squared score of 0.99999607 tells us the model is effective at predicting the rating category. The test set had an RMSE of 0.00123007 and R-squared score of 0.99999157 suggesting that the model's predictions on the test set are also very close to the actual values. 
