@@ -161,3 +161,19 @@ How each feature improved the model:
 `ingredient_time_ratio`: This feature represents the ratio of cooking time to the number of ingredients. Recipes with lower ratios may be perceived as easier or quicker to prepare and could impact the rating category.
 
 OneHotEncoder is used for  `tags`. The hyperparameters are from the RandomForestRegressor: `max_depth`, `min_samples_split`, and `n_estimators`. The resulting training set RMSE of 0.00087655 suggests that the model's predictions on the training set are very close to the actual values. The R-squared score of 0.99999607 tells us the model is effective at predicting the rating category. The test set had an RMSE of 0.00123007 and R-squared score of 0.99999157 suggesting that the model's predictions on the test set are also very close to the actual values. 
+
+## Fairness Analysis
+Fairness analysis refers to the process of assessing whether a predictive model is biased or not against certain groups in a population. To evaluate the fairness of our final model, we assigned Group X: Recipes with calories less than 500
+Group Y: Recipes with calories greater than or equal to 500
+ We set up a null and alternative hypothesis to explore the possibility of bias:
+
+**Null hypothesis:** Our model is fair. Its RSME for recipes with calories less than 500 (Group X) and recipes with calories greater than or equal to 500 (Group Y) are roughly the same, and any differences are due to random chance.
+
+**Alternative hypothesis:**Our model is unfair. Its a RSME for recipes with calories less than 500 (Group X) is lower than its RSME for recipes with calories greater than or equal to 500 (Group Y).
+
+For our fairness analysis, we choose to use RMSE (Root Mean Squared Error) as our evaluation metric, with the test statistic being the difference in RMSE scores between the two groups: recipes with calories less than 500 (Group X) and recipes with calories greater than or equal to 500 (Group Y). Our significance level was set at 0.05, and after running 1000 permutation tests, we got a p-value of 0.837. 
+
+<p style="text-align:center"><iframe src="assets/file-name.html" width=800 height=425 align='center' frameBorder=0></iframe></p>
+
+In conclusion, based on the resulting p-value of 0.837, being greater than our significance level of 0.05, we fail to reject the null hypothesis. There is no evidence of unfairness in the model and its RMSE for recipes with calories less than 500 (Group X) is lower than its RSME for recipes with calories greater than or equal to 500 (Group Y). Our conclusion seems to indicate that our model is fair and any observed differences in RMSE scores between the two groups are due to random chance.
+
