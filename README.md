@@ -71,18 +71,14 @@ The first five rows of our dataframe are included below:
 </td>      <td>[5.0, 5.0, 5.0, 5.0, 5.0, 4.0, 5.0, 4.0, 5.0]</td>      <td>5</td>      <td>4.777777777777778</td>      <td>55</td>     <td>39835</td>    </tr>    <tr>      <th>2</th>      <td>1 minute cake</td>      <td>290187</td>      <td>[227652.0,
  693373.0, 646093.0, 765161.0, 879045.0, 872425.0, 213139.0, 299046.0, 1383715.0, 308765.0, 1993336.0]</td>      <td>[4.0, 4.0, 4.0, 4.0, 4.0, 5.0, 4.0, 5.0, 1.0, 4.0, 5.0]</td>      <td>20</td>      <td>4.0</td>      <td>2</td>    <td>584365</td>    </tr>    <tr>      <th>3</th>      <td>10 calorie chocolate miracle noodle cookies</td>      <td>478546</td>      <td>[2249984.0, 1802657711.0, 2000301575.0, 2000920973.0, 2001773359.0]</td>      <td>[3.0, 3.0, 4.0, nan, nan]</td>      <td>26</td>      <td>3.3333333333333335</td>      <td>16</td>    <td>2247203</td>    </tr>    <tr>      <th>4</th>      <td>10 minute baked halibut with garlic butter sauce</td>      <td>359203</td>      <td>[4470.0, 90633.0, 653438.0, 369715.0, 242188.0, 1800042302.0, 1803231273.0]</td>      <td>[5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0]</td>      <td>16</td>      <td>5.0</td>      <td>35</td>   <td>37779</td>    </tr>  </tbody></table>
 
-
 ## Framing the Problem: Problem Identification
-**Prediction problem:** Can we predict the ’rating’ of recipes based on other columns in the dataset?
+**Prediction problem:** Can we predict the ‘rating’ of recipes based on other columns in the dataset?
 
 We approached this prediction problem by building a regression model to predict the ‘avg_rating’ which represents the average ratings based on reviews by users. The goal is to predict the average rating of recipes based on other columns of the dataset. Predicting ratings can be valuable for understanding user preferences and recommending recipes.
 
 At the time of prediction, we would have access to the features available in the cleaned dataset, ‘name’, `id`, `user_id`, `ratings`, `n_steps`, `avg_rating`, `minutes`, `contributor_id`, and `n_ingredients`. However, not all of these features will be used for the prediction. For example, the id of a user does not tell us anything about the recipe or the rating it received. The relevant features can be used to train a regression model to predict the average rating of a recipe.
 
-To evaluate the model's performance, we will use the root mean squared error (RMSE) as the metric. RMSE measures the average deviation between the predicted ratings and the actual ratings. It is suitable for regression tasks and provides a measure of how well the model predicts the continuous response variable. It is important to note that the lower values of RMSE indicate better model performance. RMSE is a suitable metric for capturing the accuracy of rating prediction because it gives more weight to larger deviations by effectively penalizing them and considering the magnitude of errors. 
-
-At the time of prediction, we would know the values of the features used for training the model. These features include `n_steps`, `minutes`, `contributor_id`, and any additional engineered features. The model should only use these features to make predictions and not rely on any future or external information that would not be available during the prediction phase.
-
+To evaluate the model's performance, we will use the root mean squared error (RMSE) as the metric. RMSE measures the average deviation between the predicted ratings and the actual ratings. It is suitable for regression tasks and provides a measure of how well the model predicts the continuous response variable. We aim to have a low RMSE value because a lower score indicates a better model performance.
 
 ## Baseline Model
 The model we created is a linear regression model. It aims to predict the average rating of recipes based on three features: `n_steps`, `minutes`, and `n_ingredients`. 
@@ -102,3 +98,37 @@ The R-squared score measures the proportion of the variance in the target variab
 
 Considering the model's performance, the RMSE values indicate a relatively low prediction error. However, the low R-squared scores indicate that the model may not capture a significant amount of variance in the target variable based on the given features.
 
+
+## Final Model
+For our final model, we chose to include 2 new features: 
+`low_calorie`: We established a dish as “low calorie” when it is less than 500 calories. We created a new column to differentiate recipes with under 500 calories with a 1, otherwise it has a 0.
+`ingredient_time_ratio`: The minutes of a recipe over the number of ingredients.
+These additional features provide insight to the data by revealing how the model can improve based on the information and other factors. Low calorie can affect the ratings of recipes because some people may prefer lower calorie recipes and find higher calorie recipes as “unhealthy” so they would give low calorie recipes a higher rating. The ingredient to time ratio measures the ratio of time required to prepare a recipe to the number of ingredients used in the recipe. It quantifies the complexity of a recipe. Higher values suggest more complex recipes vs. lower values require less time and tend to be more simple. 
+
+At first, we tried using Polynomial Features to test our data to see if we improved the model’s performance. We began this process by using a StandardScaler() to standardize the numerical features. We then created a pipeline using PolynomialFeatures() and a linear regression model LinearRegression().  We started by Below is the result:
+Degree 1:
+Training Set:
+Root Mean Squared Error: 0.33888976058534387
+R-squared Score: 0.002496892225647418
+
+Test Set:
+Root Mean Squared Error: 0.31460135810083106
+R-squared Score: -0.0033411305297359473
+
+Degree 2:
+Training Set:
+Root Mean Squared Error: 0.3380502705966843
+R-squared Score: 0.007432755054219697
+
+Test Set:
+Root Mean Squared Error: 0.3152351960667313
+R-squared Score: -0.0073881336693362165
+
+Degree 3:
+Training Set:
+Root Mean Squared Error: 0.33742809172638727
+R-squared Score: 0.011083017271622086
+
+Test Set:
+Root Mean Squared Error: 0.3163067068364738
+R-squared Score: -0.014248165668983237
