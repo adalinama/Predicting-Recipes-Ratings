@@ -64,7 +64,6 @@ The fifth step of our data cleaning process was to filter out recipes that took 
     <iframe src="assets/univariate-plots/uni-fig-bot.html" width=410 height=275 frameBorder=0></iframe> 
 <p style="text-align:center"><iframe src="assets/univariate-plots/uni-fig-jng.html" width=410 height=275 align='center' frameBorder=0></iframe></p>
 </p>
-</p>
 
 For the last step to clean the dataset, we grouped the data based on recipes and put all reviews of each recipe into lists separated by ‘user_id’ and ’ratings’.
 
@@ -76,7 +75,7 @@ The first five rows of our dataframe are included below:
 
 
 ## Framing the Problem: Problem Identification
-**Prediction problem:** Can we predict the ‘rating’ of recipes based on other columns in the dataset?
+**Prediction problem:** Can we predict the ’rating’ of recipes based on other columns in the dataset?
 
 We approached this prediction problem by building a regression model to predict the ‘avg_rating’ which represents the average ratings based on reviews by users. The goal is to predict the average rating of recipes based on other columns of the dataset. Predicting ratings can be valuable for understanding user preferences and recommending recipes.
 
