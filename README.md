@@ -74,9 +74,9 @@ The first five rows of our dataframe are included below:
 ## Framing the Problem: Problem Identification
 **Prediction problem:** Can we predict the ‘rating’ of recipes based on other columns in the dataset?
 
-We approached this prediction problem by building a regression model to predict the ‘avg_rating‘ which represents the average ratings based on reviews by users. The goal is to predict the average rating of recipes based on other columns of the dataset. Predicting ratings can be valuable for understanding user preferences and recommending recipes.
+We approached this prediction problem by building a regression model to predict the `avg_rating` which represents the average ratings based on reviews by users. The goal is to predict the average rating of recipes based on other columns of the dataset. Predicting ratings can be valuable for understanding user preferences and recommending recipes.
 
-At the time of prediction, we would have access to the features available in the cleaned dataset, ‘name’, `id`, `user_id`, `ratings`, `n_steps`, `avg_rating`, `minutes`, `contributor_id`, and `n_ingredients`. However, not all of these features will be used for the prediction. For example, the id of a user does not tell us anything about the recipe or the rating it received. The relevant features can be used to train a regression model to predict the average rating of a recipe.
+At the time of prediction, we would have access to the features available in the cleaned dataset, `name`, `id`, `user_id`, `ratings`, `n_steps`, `avg_rating`, `minutes`, `contributor_id`, and `n_ingredients`. However, not all of these features will be used for the prediction. For example, the id of a user does not tell us anything about the recipe or the rating it received. The relevant features can be used to train a regression model to predict the average rating of a recipe.
 
 To evaluate the model's performance, we will use the root mean squared error (RMSE) as the metric. RMSE measures the average deviation between the predicted ratings and the actual ratings. It is suitable for regression tasks and provides a measure of how well the model predicts the continuous response variable. We aim to have a low RMSE value because a lower score indicates a better model performance.
 
