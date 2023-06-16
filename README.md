@@ -98,9 +98,12 @@ The R-squared score measures the proportion of the variance in the target variab
 
 
 ## Final Model
-For our final model, we chose to include 2 new features: 
+For our final model, we chose to include 2 new features:
+
 `low_calorie`: We established a dish as “low calorie” when it is less than 500 calories. We created a new column to differentiate recipes with under 500 calories with a 1, otherwise, it has a 0.
+
 `ingredient_time_ratio`: The minutes of a recipe over the number of ingredients.
+
 These additional features provide insight into the data by revealing how the model can improve based on the information and other factors. Low calorie can affect the ratings of recipes because some people may prefer lower-calorie recipes and find higher-calorie recipes as “unhealthy” so they would give low-calorie recipes a higher rating. The ingredient-to-time ratio measures the ratio of time required to prepare a recipe to the number of ingredients used in the recipe. It quantifies the complexity of a recipe. Higher values suggest more complex recipes vs. lower values require less time and tend to be more simple. 
 
 At first, we tried using Polynomial Features to test our data to see if we improved the model’s performance. We began this process by using a StandardScaler() to standardize the numerical features. We then created a pipeline using PolynomialFeatures() and a linear regression model LinearRegression(). To find the best degree parameter, we choose to use GridSearchCV() as our hyperparameter to minimize the mean squared error. Below is the result:
