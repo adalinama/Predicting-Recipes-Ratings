@@ -60,9 +60,7 @@ The fourth step of our data-cleaning process was to filter out recipes that cont
 The fifth step of our data cleaning process was to filter out recipes that took over 120 minutes because according to the data below, we noticed almost 90 percent of the data was within 120 minutes. And this additionally helped filter out any outliers within the data. 
 
 <p float = 'left'> 
-    <iframe src="assets/univariate-plots/uni-fig-mid.html" width=410 height=275 frameBorder=0></iframe>
-    <iframe src="assets/univariate-plots/uni-fig-bot.html" width=410 height=275 frameBorder=0></iframe> 
-<p style="text-align:center"><iframe src="assets/univariate-plots/uni-fig-jng.html" width=410 height=275 align='center' frameBorder=0></iframe></p>
+    <iframe src="assets/uni-fig-all.html" width='100%' height= 435 align='center' frameBorder=0></iframe>
 </p>
 
 For the last step to clean the dataset, we grouped the data based on recipes and put all reviews of each recipe into lists separated by ‘user_id’ and ’ratings’.
