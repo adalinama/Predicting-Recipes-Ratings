@@ -74,7 +74,7 @@ The first five rows of our dataframe are included below:
 ## Framing the Problem: Problem Identification
 **Prediction problem:** Can we predict the ‘rating’ of recipes based on other columns in the dataset?
 
-We approached this prediction problem by building a regression model to predict the ‘avg_rating’ which represents the average ratings based on reviews by users. The goal is to predict the average rating of recipes based on other columns of the dataset. Predicting ratings can be valuable for understanding user preferences and recommending recipes.
+We approached this prediction problem by building a regression model to predict the ‘avg_rating‘ which represents the average ratings based on reviews by users. The goal is to predict the average rating of recipes based on other columns of the dataset. Predicting ratings can be valuable for understanding user preferences and recommending recipes.
 
 At the time of prediction, we would have access to the features available in the cleaned dataset, ‘name’, `id`, `user_id`, `ratings`, `n_steps`, `avg_rating`, `minutes`, `contributor_id`, and `n_ingredients`. However, not all of these features will be used for the prediction. For example, the id of a user does not tell us anything about the recipe or the rating it received. The relevant features can be used to train a regression model to predict the average rating of a recipe.
 
@@ -101,11 +101,12 @@ Considering the model's performance, the RMSE values indicate a relatively low p
 
 ## Final Model
 For our final model, we chose to include 2 new features: 
-`low_calorie`: We established a dish as “low calorie” when it is less than 500 calories. We created a new column to differentiate recipes with under 500 calories with a 1, otherwise it has a 0.
+`low_calorie`: We established a dish as “low calorie” when it is less than 500 calories. We created a new column to differentiate recipes with under 500 calories with a 1, otherwise, it has a 0.
 `ingredient_time_ratio`: The minutes of a recipe over the number of ingredients.
-These additional features provide insight to the data by revealing how the model can improve based on the information and other factors. Low calorie can affect the ratings of recipes because some people may prefer lower calorie recipes and find higher calorie recipes as “unhealthy” so they would give low calorie recipes a higher rating. The ingredient to time ratio measures the ratio of time required to prepare a recipe to the number of ingredients used in the recipe. It quantifies the complexity of a recipe. Higher values suggest more complex recipes vs. lower values require less time and tend to be more simple. 
+These additional features provide insight to the data by revealing how the model can improve based on the information and other factors. Low calorie can affect the ratings of recipes because some people may prefer lower-calorie recipes and find higher-calorie recipes as “unhealthy” so they would give low-calorie recipes a higher rating. The ingredient-to-time ratio measures the ratio of time required to prepare a recipe to the number of ingredients used in the recipe. It quantifies the complexity of a recipe. Higher values suggest more complex recipes vs. lower values require less time and tend to be more simple. 
 
 At first, we tried using Polynomial Features to test our data to see if we improved the model’s performance. We began this process by using a StandardScaler() to standardize the numerical features. We then created a pipeline using PolynomialFeatures() and a linear regression model LinearRegression().  We started by Below is the result:
+
 Degree 1:
 Training Set:
 Root Mean Squared Error: 0.33888976058534387
