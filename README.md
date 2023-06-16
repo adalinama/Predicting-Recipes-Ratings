@@ -1,4 +1,3 @@
-# Predicting-Recipes-Ratings
 # Predicting Recipe Ratings
 A UCSD DSC80 project predicting the average recipe ratings.
 
