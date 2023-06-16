@@ -62,9 +62,6 @@ The fifth step of our data cleaning process was to filter out recipes that took 
 <p float = 'left'> 
     <iframe src="assets/univariate-plots/uni-fig-mid.html" width=410 height=275 frameBorder=0></iframe>
     <iframe src="assets/univariate-plots/uni-fig-bot.html" width=410 height=275 frameBorder=0></iframe> 
-<p float = 'left'> 
-    <iframe src="assets/univariate-plots/uni-fig-top.html" width=410 height=275 frameBorder=0></iframe>
-    <iframe src="assets/univariate-plots/uni-fig-sup.html" width=410 height=275 frameBorder=0></iframe> 
 <p style="text-align:center"><iframe src="assets/univariate-plots/uni-fig-jng.html" width=410 height=275 align='center' frameBorder=0></iframe></p>
 </p>
 </p>
