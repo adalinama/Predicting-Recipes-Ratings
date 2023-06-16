@@ -102,7 +102,3 @@ The R-squared score measures the proportion of the variance in the target variab
 
 Considering the model's performance, the RMSE values indicate a relatively low prediction error. However, the low R-squared scores indicate that the model may not capture a significant amount of variance in the target variable based on the given features.
 
-It's important to consider the specific requirements and context of the problem to determine whether the model is considered "good." While the RMSE values are relatively low, the low R-squared scores suggest that there may be other factors not captured by the current features, leading to poor predictive performance.
-
-Further analysis, feature engineering, or exploring different models may be necessary to improve the model's performance and capture more meaningful patterns in the data.
-
