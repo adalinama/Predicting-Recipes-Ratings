@@ -96,8 +96,6 @@ The RMSE measures the average distance between the predicted ratings and the act
 
 The R-squared score measures the proportion of the variance in the target variable that is predictable from the features. A higher R-squared score indicates a better fit of the model to the data. However, a R-squared can be negative when the model performs worse than a horizontal line. For the training set, the R-squared score is 0.0024, and for the test set, it is -0.0026. Because of this, one of our goals for the Final Model is to improve this score. 
 
-The model's performance tells us that the RMSE values have a relatively low prediction error. However, the low R-squared scores indicate that the model may not have a significant amount of variance in the target variable based on the given features.
-
 
 ## Final Model
 For our final model, we chose to include 2 new features: 
