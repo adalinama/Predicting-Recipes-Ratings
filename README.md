@@ -33,7 +33,7 @@ Recipes: Information found on [food.com](food.com)
 | `nutrition` | Nutrition information in the form [calories (#), total fat (PDV), sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV)]; PDV stands for “percentage of daily value”                       |
 | `n_steps`         | Number of steps in recipe                                       |
 | `steps`          | Text for recipe steps, in order                                |
-| `description `          | User-provided description                             |
+| `description`          | User-provided description                             |
 
 Ratings
 
@@ -47,15 +47,15 @@ Ratings
 
 
 ### Data Cleaning
-For this project, we followed the same procedure for data cleaning as Project 3. Here is a clear outline of the steps we took to obtain our dataset:
+For this project, we followed the same procedure for data cleaning as in Project 3. Here is a clear outline of the steps we took to obtain our dataset:
 
-The first step of our data cleaning process was to merge our two datasets together. We performed a left merge on the recipes and interactions datasets together. 
+The first step of our data-cleaning process was to merge our two datasets together. We performed a left merge on the recipes and interactions datasets together. 
 
 The second step of our data cleaning process was to fill all ratings of 0 with` np.nan`. We performed this step, because the lowest rating that you can give is one star, so we can automatically assume that if a rating contains zero stars, no rating was given.  
 
-The third step of our data cleaning process was to find the average rating per recipe, as a Series. We grouped by `id` before finding the mean of `ratings`. We made sure to rename the columns to `ratings` and `avg_rating`. After adding this Series containing the average rating per recipe back to the dataset.  
+The third step of our data-cleaning process was to find the average rating per recipe, as a Series. We grouped by `id` before finding the mean of `ratings`. We made sure to rename the columns to `ratings` and `avg_rating`. After adding this Series containing the average rating per recipe back to the dataset.  
 
-The fourth step of our data cleaning process was to filter out recipes that contained less than 5 reviews. We grouped by `id` before finding the count of the recipe `name` and then sorted the values and getting all recipe names with 5 or more reviews. We then merged this to our dataset and named it `count`. 
+The fourth step of our data-cleaning process was to filter out recipes that contained less than 5 reviews. We grouped by `id` before finding the count of the recipe `name` and then sorted the values and got all recipe names with 5 or more reviews. We then merged this to our dataset and named it `count`. 
 
 The fifth step of our data cleaning process was to filter out recipes that took over 120 minutes because according to the data below, we noticed almost 90 percent of the data was within 120 minutes. And this additionally helped filter out any outliers within the data. 
 
@@ -83,20 +83,20 @@ The first five rows of our dataframe are included below:
 
 We approached this prediction problem by building a regression model to predict the ‘avg_rating’ which represents the average ratings based on reviews by users. The goal is to predict the average rating of recipes based on other columns of the dataset. Predicting ratings can be valuable for understanding user preferences and recommending recipes.
 
-At the time of prediction, we would have access to the features available in the cleaned dataset, ‘name’, ‘id’, ‘user_id’, ‘ratings’, ‘n_steps’, ‘avg_rating’, ‘minutes’, ‘contributor_id’, and ‘n_ingredients’. However, not all of these features will be used for the prediction. For example, the id of a user does not tell us anything about the recipe nor the rating it received. The relevant features can be used to train a regression model to predict the average rating of a recipe.
+At the time of prediction, we would have access to the features available in the cleaned dataset, ‘name’, `id`, `user_id`, `ratings`, `n_steps`, `avg_rating`, `minutes`, `contributor_id`, and `n_ingredients`. However, not all of these features will be used for the prediction. For example, the id of a user does not tell us anything about the recipe or the rating it received. The relevant features can be used to train a regression model to predict the average rating of a recipe.
 
-To evaluate the model's performance, we will use the root mean squared error (RMSE) as the metric. RMSE measures the average deviation between the predicted ratings and the actual ratings. It is suitable for regression tasks and provides a measure of how well the model predicts the continuous response variable. It is important to note that the lower values of RMSE indicate better model performance. RMSE is a suitable metric for capturing the accuracy of ratings prediction because it gives more weight to larger deviations by effectively penalizing them and considering the magnitude of errors. 
+To evaluate the model's performance, we will use the root mean squared error (RMSE) as the metric. RMSE measures the average deviation between the predicted ratings and the actual ratings. It is suitable for regression tasks and provides a measure of how well the model predicts the continuous response variable. It is important to note that the lower values of RMSE indicate better model performance. RMSE is a suitable metric for capturing the accuracy of rating prediction because it gives more weight to larger deviations by effectively penalizing them and considering the magnitude of errors. 
 
-At the time of prediction, we would know the values of the features used for training the model. These features include 'n_steps', 'minutes', 'contributor_id', and any additional engineered features. The model should only use these features to make predictions and not rely on any future or external information that would not be available during the prediction phase.
+At the time of prediction, we would know the values of the features used for training the model. These features include `n_steps`, `minutes`, `contributor_id`, and any additional engineered features. The model should only use these features to make predictions and not rely on any future or external information that would not be available during the prediction phase.
 
 
 ## Baseline Model
-The model we created is a linear regression model. It aims to predict the average rating of recipes based on three features: 'n_steps', 'minutes', and 'n_ingredients'. 
+The model we created is a linear regression model. It aims to predict the average rating of recipes based on three features: `n_steps`, `minutes`, and `n_ingredients`. 
 
 The model includes the following quantitative features:
- 'n_steps': The number of steps in the recipe.
- 'minutes': The total time necessary to make the recipe.
-‘'n_ingredients': The number of ingredients used in the recipe.
+`n_steps`: The number of steps in the recipe.
+`minutes`: The total time necessary to make the recipe.
+`n_ingredients`: The number of ingredients used in the recipe.
 
 The numerical features are preprocessed using the StandardScaler, which standardizes the features by removing the mean and scaling to unit variance. This step ensures that all features are on a similar scale. 
 
@@ -104,7 +104,7 @@ The model's performance is evaluated using two metrics: root mean squared error 
 
 The RMSE measures the average distance between the predicted ratings and the actual ratings. For the training set, the RMSE is 0.3389, and for the test set, it is 0.3145. A lower RMSE indicates better performance and the values we obtained suggest a reasonable level of accuracy in predicting the average ratings of recipes.
 
-R-squared score measures the proportion of the variance in the target variable that is predictable from the features. A higher R-squared score indicates a better fit of the model to the data. However, it's important to note that R-squared can be negative when the model performs worse than a horizontal line. For the training set, the R-squared score is 0.0024, and for the test set, it is -0.0026. 
+The R-squared score measures the proportion of the variance in the target variable that is predictable from the features. A higher R-squared score indicates a better fit of the model to the data. However, it's important to note that R-squared can be negative when the model performs worse than a horizontal line. For the training set, the R-squared score is 0.0024, and for the test set, it is -0.0026. Because of this, one of our goals for the Final Model is to improve this score.
 
 Considering the model's performance, the RMSE values indicate a relatively low prediction error. However, the low R-squared scores indicate that the model may not capture a significant amount of variance in the target variable based on the given features.
 
