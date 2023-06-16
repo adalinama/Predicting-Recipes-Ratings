@@ -94,18 +94,18 @@ The model's performance is evaluated using two metrics: root mean squared error 
 
 The RMSE measures the average distance between the predicted ratings and the actual ratings. For the training set, the RMSE is 0.3389, and for the test set, it is 0.3145. A lower RMSE indicates better performance and the values we obtained suggest a reasonable level of accuracy in predicting the average ratings of recipes.
 
-The R-squared score measures the proportion of the variance in the target variable that is predictable from the features. A higher R-squared score indicates a better fit of the model to the data. However, it's important to note that R-squared can be negative when the model performs worse than a horizontal line. For the training set, the R-squared score is 0.0024, and for the test set, it is -0.0026. Because of this, one of our goals for the Final Model is to improve this score.
+The R-squared score measures the proportion of the variance in the target variable that is predictable from the features. A higher R-squared score indicates a better fit of the model to the data. However, a R-squared can be negative when the model performs worse than a horizontal line. For the training set, the R-squared score is 0.0024, and for the test set, it is -0.0026. Because of this, one of our goals for the Final Model is to improve this score. 
 
-Considering the model's performance, the RMSE values indicate a relatively low prediction error. However, the low R-squared scores indicate that the model may not capture a significant amount of variance in the target variable based on the given features.
+The model's performance tells us that the RMSE values have a relatively low prediction error. However, the low R-squared scores indicate that the model may not have a significant amount of variance in the target variable based on the given features.
 
 
 ## Final Model
 For our final model, we chose to include 2 new features: 
 `low_calorie`: We established a dish as “low calorie” when it is less than 500 calories. We created a new column to differentiate recipes with under 500 calories with a 1, otherwise, it has a 0.
 `ingredient_time_ratio`: The minutes of a recipe over the number of ingredients.
-These additional features provide insight to the data by revealing how the model can improve based on the information and other factors. Low calorie can affect the ratings of recipes because some people may prefer lower-calorie recipes and find higher-calorie recipes as “unhealthy” so they would give low-calorie recipes a higher rating. The ingredient-to-time ratio measures the ratio of time required to prepare a recipe to the number of ingredients used in the recipe. It quantifies the complexity of a recipe. Higher values suggest more complex recipes vs. lower values require less time and tend to be more simple. 
+These additional features provide insight into the data by revealing how the model can improve based on the information and other factors. Low calorie can affect the ratings of recipes because some people may prefer lower-calorie recipes and find higher-calorie recipes as “unhealthy” so they would give low-calorie recipes a higher rating. The ingredient-to-time ratio measures the ratio of time required to prepare a recipe to the number of ingredients used in the recipe. It quantifies the complexity of a recipe. Higher values suggest more complex recipes vs. lower values require less time and tend to be more simple. 
 
-At first, we tried using Polynomial Features to test our data to see if we improved the model’s performance. We began this process by using a StandardScaler() to standardize the numerical features. We then created a pipeline using PolynomialFeatures() and a linear regression model LinearRegression().  We started by Below is the result:
+At first, we tried using Polynomial Features to test our data to see if we improved the model’s performance. We began this process by using a StandardScaler() to standardize the numerical features. We then created a pipeline using PolynomialFeatures() and a linear regression model LinearRegression(). To find the best degree parameter, we choose to use GridSearchCV() as our hyperparameter to minimize the mean squared error. Below is the result:
 
 Degree 1:
 Training Set:
@@ -133,3 +133,6 @@ R-squared Score: 0.011083017271622086
 Test Set:
 Root Mean Squared Error: 0.3163067068364738
 R-squared Score: -0.014248165668983237
+
+For all three degrees (1, 2, and 3), the model exhibits a low R-squared score, indicating that `avg_rating` is not well explained by the features in the dataset. The R-squared scores are close to zero or slightly negative, revealing that the model still has a lot of room for improvement. Additionally, the root mean squared error (RMSE) values are relatively high meaning that there is a significant difference between the actual target values and the predicted values. 
+Overall, we noticed that the polynomial regression model with degrees 1, 2, and 3 did not improve the model’s performance and is not a great indicator of the relationship between the features and the ‘avg_rating’. In fact, as the degree increases, the model’s performance decreases slightly. Using GridSearchCV() indicated that our best polynomial degree was 1.
