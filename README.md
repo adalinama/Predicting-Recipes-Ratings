@@ -145,7 +145,7 @@ At this point, we hit a roadblock where we couldn’t improve the regression mod
 
 We decided to use the features `minutes`, `n_ingredients`, `tags`, `calories`, `avg_rating`, `recipe_age`, `n_steps`,  and `ingredient_time_ratio`. All of these features are numerical except `tags` which are categorical. For `avg_rating`, we created a new column titled `rating_category` which sorts the ratings into 4 bins. Another feature we created was `recipe_age` which takes the date that each recipe was submitted and subtracts it from the current date.
 
-The features are standardized using StandardScaler for  `minutes`, `n_ingredients`,  `calories`, `avg_rating`, `recipe_age`, `n_steps`,  and `ingredient_time_ratio`. 
+The features are standardized using StandardScaler for  `minutes`, `n_ingredients`,  `calories`, `avg_rating`, `recipe_age`, `n_steps`,  and `ingredient_time_ratio`. OneHotEncoder is used for  `tags`. The hyperparameters are from the RandomForestRegressor: {`regressor__max_depth`: 5, `regressor__min_samples_split`: 10, `regressor__n_estimators`: 200}, found using GridSearchCV, and then later done by hand inputting different combinations to discover that the current resulted in the best outcomes for scores. The resulting training set RMSE of 0.0006 suggests that the model's predictions on the training set are very close to the actual values. The R-squared score of 0.9999 tells us the model is effective at predicting the rating category. The test set had an RMSE of 0.0011 and R-squared score of 0.9999 suggesting that the model's predictions on the test set are also very close to the actual values. 
 
 How each feature improved the model:
 
@@ -162,8 +162,6 @@ How each feature improved the model:
 `n_steps`: This feature represents the number of steps or instructions in the recipe which can provide insights into the complexity and level of detail in the cooking process. Recipes with more steps might require additional effort, potentially affecting the rating category.
 
 `ingredient_time_ratio`: This feature represents the ratio of cooking time to the number of ingredients. Recipes with lower ratios may be perceived as easier or quicker to prepare and could impact the rating category.
-
-OneHotEncoder is used for  `tags`. The hyperparameters are from the RandomForestRegressor: {`regressor__max_depth`: 5, `regressor__min_samples_split`: 10, `regressor__n_estimators`: 200}, found using GridSearchCV, and then later done by hand inputting different combinations to discover that the current resulted in the best outcomes for scores. The resulting training set RMSE of 0.0006 suggests that the model's predictions on the training set are very close to the actual values. The R-squared score of 0.9999 tells us the model is effective at predicting the rating category. The test set had an RMSE of 0.0011 and R-squared score of 0.9999 suggesting that the model's predictions on the test set are also very close to the actual values. 
 
 In conclusion, we decided to use the RandomForestRegressor model as it produced results with the highest RSME and R-squared score improvement among all models. 
 
